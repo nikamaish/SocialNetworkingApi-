@@ -33,31 +33,20 @@ const followUser = async (req, res) => {
 };
 
 const unfollowUser = async (req, res) => {
-  try {
-    const { unfollowUserId } = req.body;
-    const followerId = req.user.id;
-
-    // Check if the user to be unfollowed exists
-    const unfollowUser = await User.findById(unfollowUserId);
-    if (!unfollowUser) {
-      return res.status(404).json({ error: 'User not found' });
+    try {
+      const { unfollowUserId } = req.body;
+      const userId = req.user.id;
+  
+      // Your logic to unfollow the user here
+      // Example: Remove the unfollowUserId from the following array of the current user
+      await User.findByIdAndUpdate(userId, { $pull: { following: unfollowUserId } });
+  
+      res.status(200).json({ message: 'User unfollowed successfully' });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal Server Error' });
     }
-
-    // Check if the follow relationship exists
-    const existingFollow = await Follow.findOne({ follower: followerId, following: unfollowUserId });
-    if (!existingFollow) {
-      return res.status(400).json({ error: 'User not followed' });
-    }
-
-    // Remove the follow relationship
-    await existingFollow.remove();
-
-    res.status(200).json({ message: 'User unfollowed successfully' });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-};
+  };
 
 module.exports = {
   followUser,
