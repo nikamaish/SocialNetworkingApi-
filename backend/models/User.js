@@ -8,7 +8,14 @@ const userSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: true,
+    // required: true,
+  },
+  bio: {
+    type: String,
+    maxlength: 150,
+  },
+  profilePictureUrl: {
+    type: String,
   },
   createdAt: {
     type: Date,

@@ -1,59 +1,87 @@
-// controllers/userController.js
+// userController.js
+// import User from '../models/User.js';
+
 const User = require('../models/User');
 
-// Create user
-exports.create = async (req, res, next) => {
+
+// const createProfile = async (req, res) => {
+//   try {
+//     // Extract user details from the request body
+//     const { username, bio, profilePictureUrl } = req.body;
+
+//     // Omit the password field if it exists in the request body
+//     const userProfileData = { username, bio, profilePictureUrl };
+
+//     // Create a new user profile
+//     const userProfile = await User.create(userProfileData);
+
+//     res.status(201).json(userProfile);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: 'Internal Server Error' });
+//   }
+// };
+
+
+
+
+ const viewProfile = async (req, res) => {
   try {
-    // Implement create user logic using req.body
-    const newUser = await User.create(req.body);
-    res.status(201).json(newUser);
+    const userId = req.params.userId;
+
+    // Retrieve the user profile
+    const userProfile = await User.findById(userId);
+
+    if (!userProfile) {
+      return res.status(404).json({ error: 'User profile not found' });
+    }
+
+    res.status(200).json(userProfile);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
 
-// Get user by ID
-exports.getById = async (req, res, next) => {
+ const updateProfile = async (req, res) => {
   try {
-    // Implement get user by ID logic using req.params.userId
-    const user = await User.findById(req.params.userId);
-    if (!user) {
-      return res.status(404).json({ error: 'User not found' });
-    }
-    res.status(200).json(user);
+    const userId = req.params.userId;
+    const { username, bio, profilePictureUrl } = req.body;
+
+    // Update the user profile
+    const updatedUserProfile = await User.findByIdAndUpdate(
+      userId,
+      {
+        username,
+        bio,
+        profilePictureUrl,
+      },
+      { new: true }
+    );
+
+    res.status(200).json(updatedUserProfile);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
 
-// Update user
-exports.update = async (req, res, next) => {
+ const deleteProfile = async (req, res) => {
   try {
-    // Implement update user logic using req.params.userId and req.body
-    const updatedUser = await User.findByIdAndUpdate(req.params.userId, req.body, { new: true });
-    if (!updatedUser) {
-      return res.status(404).json({ error: 'User not found' });
-    }
-    res.status(200).json(updatedUser);
+    const userId = req.params.userId;
+
+    // Delete the user profile
+    await User.findByIdAndDelete(userId);
+
+    res.status(204).end(); // No content
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
-
-// Delete user
-exports.delete = async (req, res, next) => {
-  try {
-    // Implement delete user logic using req.params.userId
-    const deletedUser = await User.findByIdAndDelete(req.params.userId);
-    if (!deletedUser) {
-      return res.status(404).json({ error: 'User not found' });
-    }
-    res.status(204).end();
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
+module.exports = {
+  // createProfile,
+  viewProfile,
+  updateProfile,
+  deleteProfile,
 };

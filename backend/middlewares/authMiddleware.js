@@ -56,7 +56,7 @@ const authMiddleware = {
       const token = generateToken(user);
 
       // Send the token as a response
-      res.json({ token });
+      res.status(201).json({ message: 'Signin Successfully', token });
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Internal Server Error' });
