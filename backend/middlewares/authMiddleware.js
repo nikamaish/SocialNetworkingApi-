@@ -22,7 +22,8 @@ const authMiddleware = {
       }
 
       // Hash the password
-      const hashedPassword = await bcrypt.hash(password, 10);
+      const saltRounds = 10;
+      const hashedPassword = await bcrypt.hash(password, saltRounds);
 
       // Create a new user
       const newUser = await User.create({
@@ -71,19 +72,19 @@ const authMiddleware = {
     if (!token) {
       return res.status(401).json({ error: 'Unauthorized - Missing Token' });
     }
-
     try {
       // Verify the token
-      const decoded = jwt.verify(token, config.jwtSecret);
-
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      console.log('Decoded Token:', decoded);
+    
       // Attach the user information to the request for further use
       req.user = decoded.user;
       next();
     } catch (error) {
-      console.error(error);
+      console.error('Token Verification Error:', error);
       return res.status(401).json({ error: 'Unauthorized - Invalid Token' });
     }
+    
   },
 };
-
 module.exports = authMiddleware;
