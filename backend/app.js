@@ -2,23 +2,17 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const db = require('./utils/db');
-// const authMiddleware = require('./middlewares/authMiddleware');
-// const userRoutes = require('./routes/userRoutes');
-// const postRoutes = require('./routes/postRoutes');
-// const followRoutes = require('./routes/followRoutes');
-
-dotenv.config();
+const authRoutes = require('./routes/authRoutes');
+// dotenv.config();
 const app = express();
+const userRoutes = require('./routes/userRoutes');
 
 // Middleware
 app.use(express.json());
-// app.use(authMiddleware);
 
-// Routes
-// app.use('/users', userRoutes);
-// app.use('/posts', postRoutes);
-// app.use('/follows', followRoutes);
 
+app.use('/auth', authRoutes);
+app.use('/api/users', userRoutes);
 // Error handling
 app.use((err, req, res, next) => {
   console.error(err.stack);
