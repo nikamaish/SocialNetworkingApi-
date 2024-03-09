@@ -35,9 +35,32 @@ MONGODB_URI= mongodb+srv://your-username:your-password@clustername.mongodb.net/y
 JWT_SECRET = JWT_SECRET=your-secret-key
 
 
+##  5. Database Setup
+
+Ensure MongoDB is running and follow the steps below to set up the database:
+
+1. **MongoDB Installation:**
+   - If MongoDB is not installed on your machine, [install MongoDB](https://docs.mongodb.com/manual/installation/).
+
+2. **MongoDB Atlas:**
+   - If you're using MongoDB Atlas, make sure you have created a cluster and obtained the connection URI.
+
+3. **Configuration:**
+   - Open the `.env` file in the project's root directory.
+   - Update the `MONGODB_URI` variable with your MongoDB connection URI.
+
+4. **Run MongoDB:**
+   - Start your MongoDB server. If installed locally, run `mongod` in the terminal.
+
+5. **Verify Connection:**
+   - Run your application and verify that it successfully connects to the MongoDB database.
+
+Now, your database should be set up and ready to use. If you encounter any issues, refer to MongoDB's official documentation for troubleshooting.
+
+
 ## Running the Application
 
 Start the application:
 
-```bash
 npm start
+
