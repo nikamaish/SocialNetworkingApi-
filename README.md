@@ -27,9 +27,10 @@ Create a .env file in the root directory and add the following variables:
 
 PORT=5000
 
-MONGODB_URI= mongodb+srv://aish:5ICVq93au8Gte7UC@cluster0.wptflvx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+MONGODB_URI= mongodb_database_url
 
-JWT_SECRET = eyJhbGciOiJIUzUxMiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTcwOTkwMjMwMywiaWF0IjoxNzA5OTAyMzAzfQ.x34HKgAJR8ycA5FKTCqFBIHxT6zayenW2lxv6PCNojqRRoDZ5RPTGOYJvZzleLYIm46MwtlcvJL_rwz7yxnd-Q
+JWT_SECRET = JWT_SECRET=your-secret-key
+
 ## Running the Application
 
 Start the application:
