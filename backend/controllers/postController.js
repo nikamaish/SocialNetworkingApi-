@@ -69,18 +69,30 @@ const getLatestPostsFromFollowedUsers = async (req, res) => {
   try {
     const userId = req.user.id;
 
-    // Get the user's following list
+    // Step 1: Get the user's following list
     const followingList = await Follow.find({ follower: userId }).select('following');
 
-    // Extract user IDs from the following list
+    // Step 2: Extract user IDs from the following list
     const followedUserIds = followingList.map(follow => follow.following);
 
-    // Get the latest posts from users that the given user follows
-    const latestPosts = await Post.find({ user: { $in: followedUserIds } })
-      .sort({ createdAt: -1 })
-      .limit(10); // Adjust the limit as needed
+    // Step 3: Use MongoDB's aggregation framework to get the latest posts
+    const socialFeed = await Post.aggregate([
+      {
+        // Match posts from followed users
+        $match: { user: { $in: followedUserIds } },
+      },
+      {
+        // Sort posts by createdAt in descending order (most recent first)
+        $sort: { createdAt: -1 },
+      },
+      {
+        // Optionally add a $limit stage to limit the number of posts
+        $limit: 10, // Adjust the limit as needed
+      },
+    ]);
 
-    res.status(200).json(latestPosts);
+    // Step 4: Respond with the social feed
+    res.status(200).json(socialFeed);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });

@@ -8,9 +8,25 @@ const app = express();
 const userRoutes = require('./routes/userRoutes');
 const postRoutes = require('./routes/postRoutes');
 const followRoutes = require('./routes/followRoutes'); // Include the new follow routes
+const rateLimit = require('express-rate-limit');
+const cors = require('cors');
 
-// Middleware
+const corsOptions = {
+  origin: 'http://localhost:3000', // Replace with your frontend URL
+  methods: 'GET,PUT,POST,DELETE',
+  credentials: true,
+  optionsSuccessStatus: 204,
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
+
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
+});
+
+app.use(limiter);
 
 
 app.use('/auth', authRoutes);
@@ -18,6 +34,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/posts', postRoutes); // Include the new post routes
 app.use('/api/follow', followRoutes); // Include the new follow routes
 // in folowController.js we include follow, unfollow, getfollowing and getfollowers list
+
 
 
 // Error handling
