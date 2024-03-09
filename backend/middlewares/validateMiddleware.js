@@ -4,14 +4,15 @@ const { body, validationResult } = require('express-validator');
 const validateMiddleware = (req, res, next) => {
  
   const validationRules = [
-    body('username').notEmpty().isString(),
-    body('password').optional().isString(), // Optional for updates
+    body('username').notEmpty().isString().isLength({ min: 3, max: 20 }),
+    body('password').notEmpty().isString().isLength({ min: 5}),
+    
     body('bio').optional().isString().isLength({ max: 150 }), // Optional for updates, with maxlength constraint
     body('profilePictureUrl').optional().isString().isURL(), // Optional for updates, assuming pictureUrl should be a valid URL
-    body('textContent').notEmpty().isString(),
-    body('follower').isMongoId(), // Assuming follower is a valid ObjectId
-    body('following').isMongoId(), // Assuming following is a valid ObjectId
-    body('followUserId').isMongoId(),
+    body('textContent').optional().notEmpty().isString(),
+    body('follower').optional().isMongoId(), // Assuming follower is a valid ObjectId
+    body('following').optional().isMongoId(), // Assuming following is a valid ObjectId
+    body('followUserId').optional().isMongoId(),
   ];
 
   // Run validation
