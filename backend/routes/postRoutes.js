@@ -12,4 +12,6 @@ router.put('/:postId', authMiddleware.middleware, postController.updatePost);
 
 router.delete('/:postId', authMiddleware.middleware, postController.deletePost);
 
+router.get('/latest', authMiddleware.middleware, postController.getLatestPostsFromFollowedUsers);
+
 module.exports = router;

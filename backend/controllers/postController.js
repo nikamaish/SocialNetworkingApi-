@@ -1,6 +1,8 @@
 // controllers/userController.js
 const User = require('../models/User');
 const Post = require('../models/Post');
+const Follow = require('../models/Follow');
+
 
 const createPost = async (req, res) => {
     try {
@@ -62,10 +64,35 @@ const deletePost = async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
+// controllers/postController.js
+const getLatestPostsFromFollowedUsers = async (req, res) => {
+  try {
+    const userId = req.user.id;
+
+    // Get the user's following list
+    const followingList = await Follow.find({ follower: userId }).select('following');
+
+    // Extract user IDs from the following list
+    const followedUserIds = followingList.map(follow => follow.following);
+
+    // Get the latest posts from users that the given user follows
+    const latestPosts = await Post.find({ user: { $in: followedUserIds } })
+      .sort({ createdAt: -1 })
+      .limit(10); // Adjust the limit as needed
+
+    res.status(200).json(latestPosts);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+
 
 module.exports = {
   createPost,
   viewUserPosts,
   updatePost,
   deletePost,
+  getLatestPostsFromFollowedUsers,
 };
