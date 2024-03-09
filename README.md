@@ -20,6 +20,7 @@ cd backend
 
 
 ## Install dependencies
+```bash
 npm init -y
 npm install
 
@@ -35,7 +36,7 @@ MONGODB_URI= mongodb+srv://your-username:your-password@clustername.mongodb.net/y
 JWT_SECRET = JWT_SECRET=your-secret-key
 
 
-##  5. Database Setup
+## Database Setup
 
 Ensure MongoDB is running and follow the steps below to set up the database:
 
