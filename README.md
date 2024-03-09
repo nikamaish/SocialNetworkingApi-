@@ -14,19 +14,21 @@ Welcome to the Social Networking API, a powerful platform designed to facilitate
 ## Setup Instructions
 
 To get a copy of this project, simply clone the repository:
-
+```
 git clone https://github.com/nikamaish/SocialNetworkingApi-.git
 cd backend
-
+```
 
 ## Install dependencies
 ```bash
 npm init -y
 npm install
+```
 
 
 ## Environment Variables
 
+```env
 Create a .env file in the root directory and add the following variables:
 
 PORT=5000
@@ -34,7 +36,7 @@ PORT=5000
 MONGODB_URI= mongodb+srv://your-username:your-password@clustername.mongodb.net/your-database?retryWrites=true&w=majority
 
 JWT_SECRET = JWT_SECRET=your-secret-key
-
+```
 
 ## Database Setup
 
@@ -63,5 +65,6 @@ Now, your database should be set up and ready to use. If you encounter any issue
 
 Start the application:
 
+```bash
 npm start
-
+```
