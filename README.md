@@ -6,30 +6,31 @@ Welcome to the Social Networking API, a powerful platform designed to facilitate
 
 ##  Prerequisites
 
-- Node.js (version x.x.x)
-- MongoDB (version x.x.x)
+- Node.js (v18.12.1)
+- MongoDB (v4.4.15)
 
 ## Setup Instructions
 
 To get a copy of this project, simply clone the repository:
 
-
 git clone https://github.com/nikamaish/SocialNetworkingApi-.git
 cd backend
 
+
 ## Install dependencies
+npm init -y
 npm install
 
 ## Environment Variables
-
 
 Create a .env file in the root directory and add the following variables:
 
 PORT=5000
 
-MONGODB_URI= mongodb_database_url
+MONGODB_URI= MONGODB_URI=mongodb+srv://your-username:your-password@clustername.mongodb.net/your-database?retryWrites=true&w=majority
 
 JWT_SECRET = JWT_SECRET=your-secret-key
+
 
 ## Running the Application
 
