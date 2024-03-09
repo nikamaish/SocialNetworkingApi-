@@ -48,7 +48,39 @@ const unfollowUser = async (req, res) => {
     }
   };
 
+
+  const getFollowingList = async (req, res) => {
+    try {
+      const userId = req.user.id;
+  
+      // Get the user's following list
+      const followingList = await Follow.find({ follower: userId }).populate('following', 'username');
+  
+      res.status(200).json({ followingList: followingList.map(follow => follow.following) });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  };
+  
+  const getFollowersList = async (req, res) => {
+    try {
+      const userId = req.user.id;
+  
+      // Get the user's followers list
+      const followersList = await Follow.find({ following: userId }).populate('follower', 'username');
+  
+      res.status(200).json({ followersList: followersList.map(follow => follow.follower) });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  };
+  
+
 module.exports = {
   followUser,
   unfollowUser,
+  getFollowingList,
+  getFollowersList,
 };
