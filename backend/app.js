@@ -17,6 +17,7 @@ app.use('/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/posts', postRoutes); // Include the new post routes
 app.use('/api/follow', followRoutes); // Include the new follow routes
+// in folowController.js we include follow, unfollow, getfollowing and getfollowers list
 
 
 // Error handling
