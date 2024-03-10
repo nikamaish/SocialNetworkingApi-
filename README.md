@@ -72,7 +72,8 @@ npm start
 
 ## Schema Design
 
-![Screenshot 1](C:\Users\aishn\Pictures\Screenshots\Schema Diagram)
+![Schema Diagram](https://github.com/nikamaish/SocialNetworkingApi-/assets/100349291/be5cd75b-16e5-4d54-82e6-d300c9304591)
+
 
 
 
