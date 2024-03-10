@@ -69,12 +69,9 @@ Start the application:
 npm start
 ```
 
+## API Documentation
 
-## Schema Design
-
-![Schema Diagram](https://github.com/nikamaish/SocialNetworkingApi-/assets/100349291/be5cd75b-16e5-4d54-82e6-d300c9304591)
-
-
+[ API Documentation](https://drive.google.com/file/d/1y_pOisj81wo03u8paW0wwKsyPZBgufNN/view?usp=sharing)
 
 
 ## Testing Documentation
@@ -83,9 +80,14 @@ npm start
 
 
 
-## API Documentation
+## Schema Design
 
-[ API Documentation](https://drive.google.com/file/d/1y_pOisj81wo03u8paW0wwKsyPZBgufNN/view?usp=sharing)
+![Schema Diagram](https://github.com/nikamaish/SocialNetworkingApi-/assets/100349291/be5cd75b-16e5-4d54-82e6-d300c9304591)
+
+
+
+
+
 
 
 
