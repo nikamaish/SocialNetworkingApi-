@@ -75,3 +75,10 @@ npm start
 ![Screenshot 1](C:\Users\aishn\Pictures\Screenshots\Schema Diagram)
 
 
+## API Documentation
+
+[ API Documentation](https://drive.google.com/file/d/1y_pOisj81wo03u8paW0wwKsyPZBgufNN/view?usp=sharing)
+
+
+
+
