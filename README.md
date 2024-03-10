@@ -35,7 +35,7 @@ PORT=5000
 
 MONGODB_URI= mongodb+srv://your-username:your-password@clustername.mongodb.net/your-database?retryWrites=true&w=majority
 
-JWT_SECRET = JWT_SECRET=your-secret-key
+JWT_SECRET=your-secret-key
 ```
 
 ## Database Setup
