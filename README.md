@@ -76,11 +76,11 @@ npm start
 
 ## Testing Documentation
 
-[ Testing Documentation](https://drive.google.com/file/d/1kVC99uMIMsEPjjmVSD-Mv8PlAN1yIPqL/view?usp=sharing)(
+[ Testing Documentation](https://drive.google.com/file/d/1kVC99uMIMsEPjjmVSD-Mv8PlAN1yIPqL/view?usp=sharing)
 
 ## Deployment Link
 
-[ Deployment Link] (https://socialnetworking-backend-2.onrender.com)
+[ Deployment Link](https://socialnetworking-backend-2.onrender.com)
 
 
 
