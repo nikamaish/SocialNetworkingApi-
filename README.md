@@ -68,3 +68,10 @@ Start the application:
 ```bash
 npm start
 ```
+
+
+## Schema Design
+
+![Screenshot 1](C:\Users\aishn\Pictures\Screenshots\Schema Diagram)
+
+
