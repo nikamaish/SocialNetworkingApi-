@@ -58,7 +58,7 @@ const deletePost = async (req, res) => {
 
     await Post.findByIdAndDelete(postId);
 
-    res.status(204).end(); // No content
+    res.status(200).json({message:"Post Deleted Successfully"}); // No content
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
@@ -72,8 +72,14 @@ const getLatestPostsFromFollowedUsers = async (req, res) => {
     // Step 1: Get the user's following list
     const followingList = await Follow.find({ follower: userId }).select('following');
 
+    // Log the following list for debugging
+    console.log('Following List:', followingList);
+
     // Step 2: Extract user IDs from the following list
     const followedUserIds = followingList.map(follow => follow.following);
+
+    // Log the followed user IDs for debugging
+    console.log('Followed User IDs:', followedUserIds);
 
     // Step 3: Use MongoDB's aggregation framework to get the latest posts
     const socialFeed = await Post.aggregate([
@@ -98,6 +104,7 @@ const getLatestPostsFromFollowedUsers = async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
+
 
 
 

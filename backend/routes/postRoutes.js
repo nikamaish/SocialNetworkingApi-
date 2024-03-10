@@ -9,7 +9,7 @@ router.post('/', [authMiddleware.middleware, validateMiddleware], (req, res, nex
 postController.createPost (req, res, next);
 });
 
-router.get('/user',[authMiddleware.middleware, validateMiddleware], (req, res, next) => {
+router.get('/:postId',[authMiddleware.middleware, validateMiddleware], (req, res, next) => {
      postController.viewUserPosts(req, res, next);
     });
 

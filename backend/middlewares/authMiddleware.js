@@ -1,7 +1,6 @@
-// middlewares/authMiddleware.js
+
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-// const config = require('../config'); // Assuming you have a config file with JWT secret
 const User = require('../models/User');
 
 const generateToken = (user) => {

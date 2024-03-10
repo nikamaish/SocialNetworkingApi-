@@ -2,18 +2,47 @@ const { body, validationResult } = require('express-validator');
 
 // Custom validation middleware for User model
 const validateMiddleware = (req, res, next) => {
- 
-  const validationRules = [
-    body('username').notEmpty().isString().isLength({ min: 3, max: 20 }),
-    body('password').notEmpty().isString().isLength({ min: 5}),
-    
-    body('bio').optional().isString().isLength({ max: 150 }), // Optional for updates, with maxlength constraint
-    body('profilePictureUrl').optional().isString().isURL(), // Optional for updates, assuming pictureUrl should be a valid URL
-    body('textContent').optional().notEmpty().isString(),
-    body('follower').optional().isMongoId(), // Assuming follower is a valid ObjectId
-    body('following').optional().isMongoId(), // Assuming following is a valid ObjectId
-    body('followUserId').optional().isMongoId(),
-  ];
+  let validationRules = [];
+
+  // Add your validation rules based on the route
+  switch (req.path) {
+    case '/signup':
+    case '/signin':
+      validationRules = [
+        body('username').notEmpty().isString().isLength({ min: 3, max: 20 }),
+        body('password').notEmpty().isString().isLength({ min: 5 }),
+      ];
+      break;
+
+    case '/profiles/:userId':
+      validationRules = [
+        body('username').optional().isString().isLength({ min: 3, max: 20 }),
+        body('bio').optional().isString().isLength({ max: 150 }),
+        body('profilePictureUrl').optional().isString().isURL(),
+      ];
+      break;
+
+    case '/postId':
+      validationRules = [
+        body('textContent').notEmpty().isString(),
+      ];
+      break;
+
+
+    case '/follow':
+      validationRules = [
+        body('followUserId').notEmpty().isMongoId(),
+      ];
+      break;
+      case '/unfollow':
+      validationRules = [
+        body('unfollowUserId').notEmpty().isMongoId(),
+      ];
+
+    default:
+      // Default validation rules if no specific route matches
+      break;
+  }
 
   // Run validation
   Promise.all(validationRules.map(validation => validation.run(req)))
