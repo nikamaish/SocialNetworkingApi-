@@ -78,6 +78,11 @@ npm start
 
 [ Testing Documentation](https://drive.google.com/file/d/1kVC99uMIMsEPjjmVSD-Mv8PlAN1yIPqL/view?usp=sharing)(
 
+## Deployment Link
+
+[ Deployment Link] (https://socialnetworking-backend-2.onrender.com)
+
+
 
 ## Schema Design
 
