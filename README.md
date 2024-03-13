@@ -80,7 +80,7 @@ npm start
 
 ## Deployment Link
 
-[ Deployment Link](https://socialnetworking-backend-2.onrender.com)
+[ Deployment Link](https://social-networking-backend-eight.vercel.app/)
 
 
 
